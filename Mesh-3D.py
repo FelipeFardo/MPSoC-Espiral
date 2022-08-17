@@ -67,17 +67,14 @@ j = 1
 for i in dados['Packages']:
     print(f"Exemplo {j}: ")
     j += 1
-    Data.sourceX = int(i['Source']['X'])
-    Data.sourceY = int(i['Source']['Y'])
+    Data.sourceX = Data.auxX = int(i['Source']['X'])
+    Data.sourceY = Data.auxY = int(i['Source']['Y'])
     Data.targetX = int(i['Target']['X'])
     Data.targetY = int(i['Target']['Y'])
 
-    print(f"Source= [{Data.sourceX}][{Data.sourceY}]")
-    print(f"Target= [{Data.targetX}][{Data.targetY}]")
+    print(f"Source = [{Data.sourceX}][{Data.sourceY}]")
+    print(f"Target = [{Data.targetX}][{Data.targetY}]")
     print(f"\nProc[{Data.sourceX}][{Data.sourceY}] criou a mensagem")
-
-    Data.auxX = Data.sourceX
-    Data.auxY = Data.sourceY
 
     if Data.targetY - Data.sourceY > 0 and (Data.targetY - Data.sourceY) > (jTam-1)/2 or Data.targetY - Data.sourceY < 0 and abs(Data.targetY - Data.sourceY) <= (jTam-1)/2:
         routerJ(Data, -1)
