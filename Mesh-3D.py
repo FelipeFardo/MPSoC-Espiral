@@ -1,3 +1,9 @@
+import json
+
+with open("CenariosMesh.json", encoding='utf-8') as meu_json:
+    dados = json.load(meu_json)
+
+
 class Data(object):
     sourceX = sourceY = targetX = targetY = auxI = auxJ = int()
 
@@ -50,23 +56,26 @@ def routerI(Data, incremento=1):
             Data.auxI += incremento
 
 
-iTam = int(input("Quantas linhas tem a matriz? "))
-jTam = int(input("Quantas colunas tem a matriz? "))
+iTam = dados['Size']['X']
+jTam = dados['Size']['Y']
 
-while True:
-
+for i in range(iTam):
+    for j in range(jTam):
+        print("  " + str(i) + str(j), end="")
     print("")
+print("")
 
-    for i in range(iTam):
-        for j in range(jTam):
-            print("  " + str(i) + str(j), end="")
-        print("")
+j = 1
+for i in dados['Packages']:
+    print(f"Exemplo {j}: ")
+    j += 1
+    Data.sourceX = int(i['Source']['X'])
+    Data.sourceY = int(i['Source']['Y'])
+    Data.targetX = int(i['Target']['X'])
+    Data.targetY = int(i['Target']['Y'])
 
-    Data.sourceX = int(input("\nQuem e o X do Source? "))
-    Data.sourceY = int(input("Quem e o Y do Source? "))
-    Data.targetX = int(input("Quem e o X do Target? "))
-    Data.targetY = int(input("Quem e o Y do Target? "))
-
+    print(f"Source= [{Data.sourceX}][{Data.sourceY}]")
+    print(f"Target= [{Data.targetX}][{Data.targetY}]")
     print(f"\nProc[{Data.sourceX}][{Data.sourceY}] criou a mensagem")
 
     Data.auxI = Data.sourceX
@@ -82,10 +91,6 @@ while True:
         routerI(Data)
 
     print(f"Proc[{Data.targetX}][{Data.targetY}] e o destino")
-    print(f"Proc[{Data.targetX}][{Data.targetY}] consumiu a mensagem")
+    print(f"Proc[{Data.targetX}][{Data.targetY}] consumiu a mensagem\n")
 
-    sair = input("Deseja sair? [S/N] ")
-    if (sair in "SIMsim"):
-        print("Volte sempre!")
-        break
-    print("")
+print("Volte Sempre")
