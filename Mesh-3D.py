@@ -56,14 +56,15 @@ def routerI(Data, incremento=1):
 
 iTam = dados['Size']['X']
 jTam = dados['Size']['Y']
+j = 1
 
+print("Mesh: \n")
 for i in range(iTam):
     for j in range(jTam):
         print("  " + str(i) + str(j), end="")
     print("")
 print("")
 
-j = 1
 for i in dados['Packages']:
     print(f"Exemplo {j}: ")
     j += 1
