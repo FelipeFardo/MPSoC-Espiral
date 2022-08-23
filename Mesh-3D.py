@@ -56,18 +56,23 @@ def routerI(Data, incremento=1):
 
 iTam = dados['Size']['X']
 jTam = dados['Size']['Y']
-j = 1
+k = 1
 
-print("Mesh: \n")
-for i in range(iTam):
-    for j in range(jTam):
-        print("  " + str(i) + str(j), end="")
+print("\nMesh: ")
+print("\nY\n^ ")
+print("|\n|")
+for i in range(iTam - 1, 0, -1):
+    print("|", end="")
+    for j in range(0, jTam, 1):
+        print(f"  {j}{i}", end="")
     print("")
-print("")
+for i in range(0, jTam*2, 1):
+    print("--", end="")
+print("------>  X")
 
 for i in dados['Packages']:
-    print(f"Exemplo {j}: ")
-    j += 1
+    print(f"Exemplo {k}: ")
+    k += 1
     Data.sourceX = Data.auxX = int(i['Source']['X'])
     Data.sourceY = Data.auxY = int(i['Source']['Y'])
     Data.targetX = int(i['Target']['X'])
