@@ -61,9 +61,9 @@ k = 1
 print("\nMesh: ")
 print("\nY\n^ ")
 print("|\n|")
-for i in range(iTam - 1, 0, -1):
+for i in range(iTam, -1, -1):
     print("|", end="")
-    for j in range(0, jTam, 1):
+    for j in range(0, jTam+1, 1):
         print(f"  {j}{i}", end="")
     print("")
 for i in range(0, jTam*2, 1):
