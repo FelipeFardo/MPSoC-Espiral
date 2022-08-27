@@ -66,14 +66,14 @@ def router(Data):
 
     matrizCalor[Data.sourceX][Data.sourceY] += Data.qtdPacotes
     incremento = 1
-    if Data.targetY - Data.sourceY > 0 and ((Data.targetY - Data.sourceY) > (jTam - 1) / 2) or Data.targetY - Data.sourceY < 0 and abs(Data.targetY - Data.sourceY) <= (jTam - 1) / 2:
+    if Data.targetY - Data.sourceY > 0 and ((Data.targetY - Data.sourceY) > (jTam) / 2) or Data.targetY - Data.sourceY < 0 and abs(Data.targetY - Data.sourceY) <= (jTam) / 2:
         incremento = -1
     while Data.auxY != Data.targetY:
-        if Data.auxY == jTam - 1 and incremento == 1 or Data.auxY == 0 and incremento == -1:
-            Data.auxY = 0 if Data.auxY == jTam - 1 else jTam - 1
+        if Data.auxY == jTam and incremento == 1 or Data.auxY == 0 and incremento == -1:
+            Data.auxY = 0 if Data.auxY == jTam  else jTam 
             if rota:
-                print(f"Proc[{Data.sourceX}][{jTam-1-Data.auxY}] enviou a mensagem para o Proc[{Data.sourceX}][{Data.auxY}]")
-                print(f"Proc[{Data.sourceX}][{Data.auxY}] recebeu a mensagem do Proc[{Data.sourceX}][{jTam-1-Data.auxY}]")
+                print(f"Proc[{Data.sourceX}][{jTam-Data.auxY}] enviou a mensagem para o Proc[{Data.sourceX}][{Data.auxY}]")
+                print(f"Proc[{Data.sourceX}][{Data.auxY}] recebeu a mensagem do Proc[{Data.sourceX}][{jTam-Data.auxY}]")
                 if Data.sourceX != Data.targetX or Data.auxY != Data.targetY:
                     print(f"Proc[{Data.sourceX}][{Data.auxY}] NAO e o destino")
         else:
@@ -86,11 +86,11 @@ def router(Data):
         matrizCalor[Data.sourceX][Data.auxY] += Data.qtdPacotes
 
     incremento = 1
-    if Data.targetX - Data.sourceX > 0 and (Data.targetX - Data.sourceX) > (iTam - 1) / 2 or (Data.targetX - Data.sourceX) < 0 and abs(Data.targetX - Data.sourceX) <= (iTam - 1) / 2:
+    if Data.targetX - Data.sourceX > 0 and (Data.targetX - Data.sourceX) > (iTam) / 2 or (Data.targetX - Data.sourceX) < 0 and abs(Data.targetX - Data.sourceX) <= (iTam) / 2:
         incremento = -1
     while Data.auxX != Data.targetX:
-        if Data.auxX == iTam - 1 and incremento == 1 or Data.auxX == 0 and incremento == -1:
-            Data.auxX = 0 if Data.auxX == iTam - 1 else iTam - 1
+        if Data.auxX == iTam and incremento == 1 or Data.auxX == 0 and incremento == -1:
+            Data.auxX = 0 if Data.auxX == iTam else iTam
             if rota:
                 print(f"Proc[{iTam-1-Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX}][{Data.targetY}]")
                 print(f"Proc[{Data.auxX}][{Data.targetY}] recebeu a mensagem do Proc[{iTam-1-Data.auxX}][{Data.targetY}]")

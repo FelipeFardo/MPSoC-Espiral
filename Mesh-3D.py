@@ -14,8 +14,7 @@ def router(Data):
     print(f"\nProc[{Data.sourceX}][{Data.sourceY}] criou a mensagem")
 
     # Rota da Coluna
-    incremento = -1 if Data.targetY - Data.sourceY > 0 and (Data.targetY - Data.sourceY) > (
-        jTam-1)/2 or Data.targetY - Data.sourceY < 0 and abs(Data.targetY - Data.sourceY) <= (jTam-1)/2 else 1
+    incremento = -1 if Data.targetY - Data.sourceY > 0 and (Data.targetY - Data.sourceY) > (jTam)/2 or Data.targetY - Data.sourceY < 0 and abs(Data.targetY - Data.sourceY) <= (jTam)/2 else 1
     while Data.auxY != Data.targetY:
         # 3D
         if Data.auxY == iTam and incremento == 1 or Data.auxY == 0 and incremento == -1:
@@ -31,8 +30,7 @@ def router(Data):
             Data.auxY += incremento
 
     # Rota da Linha
-    incremento = -1 if Data.targetX - Data.sourceX > 0 and (Data.targetX - Data.sourceX) > (
-        iTam-1)/2 or Data.targetX - Data.sourceX < 0 and abs(Data.targetX - Data.sourceX) <= (iTam-1)/2 else 1
+    incremento = -1 if Data.targetX - Data.sourceX > 0 and (Data.targetX - Data.sourceX) > (iTam)/2 or Data.targetX - Data.sourceX < 0 and abs(Data.targetX - Data.sourceX) <= (iTam)/2 else 1
     while Data.auxX != Data.targetX:
         # 3D
         if Data.auxX == jTam and incremento == 1 or Data.auxX == 0 and incremento == -1:
