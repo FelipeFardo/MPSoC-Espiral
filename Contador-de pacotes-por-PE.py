@@ -142,9 +142,9 @@ for posAplic in dados['aplicacoes']:
         for i in range(iTam - 1, -1, -1):
             for j in range(0, jTam, 1):
                 if matrizMapeamento[j][i] == Data.sSource:
-                    Data.targetX = Data.sourceX = Data.auxX = j
-                    Data.targetY = Data.sourceY = Data.auxY = i
-                elif matrizMapeamento[j][i] == Data.sTarget:
+                    Data.sourceX = Data.auxX = j
+                    Data.sourceY = Data.auxY = i
+                if matrizMapeamento[j][i] == Data.sTarget:
                     Data.targetX = j
                     Data.targetY = i
         router(Data)
