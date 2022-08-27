@@ -16,9 +16,9 @@ rota = dados['rota']
 
 def crie_matriz(n_linhas, n_colunas):
     matriz = []
-    for i in range(n_linhas):
+    for i in range(n_linhas+1):
         linha = []
-        for j in range(n_colunas):
+        for j in range(n_colunas+1):
             linha.append(0)
         matriz.append(linha)
     return matriz
@@ -30,9 +30,9 @@ matrizCalor = matrizMapeamento = list()
 def mapeamento():
     print("Mapeamento:\n\nY\n^\n|\n| ")
 
-    for i in range(iTam - 1, -1, -1):
+    for i in range(iTam, -1, -1):
         print("|", end="")
-        for j in range(0, jTam, 1):
+        for j in range(0, jTam+1, 1):
             print(f"  {matrizMapeamento[j][i]}", end="")
         print()
     print("  ", end="")
@@ -47,9 +47,9 @@ def contadorDePacotes():
     print("\nY\n^ ")
     print("|\n|")
 
-    for i in range(iTam - 1, -1, -1):
+    for i in range(iTam, -1, -1):
         print("|", end="")
-        for j in range(0, jTam, 1):
+        for j in range(0, jTam+1, 1):
             print(f"{matrizCalor[j][i]:>3}", end="")
         print("")
     print(end="  ")
@@ -92,8 +92,8 @@ def router(Data):
         if Data.auxX == iTam and incremento == 1 or Data.auxX == 0 and incremento == -1:
             Data.auxX = 0 if Data.auxX == iTam else iTam
             if rota:
-                print(f"Proc[{iTam-1-Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX}][{Data.targetY}]")
-                print(f"Proc[{Data.auxX}][{Data.targetY}] recebeu a mensagem do Proc[{iTam-1-Data.auxX}][{Data.targetY}]")
+                print(f"Proc[{iTam-Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX}][{Data.targetY}]")
+                print(f"Proc[{Data.auxX}][{Data.targetY}] recebeu a mensagem do Proc[{iTam-Data.auxX}][{Data.targetY}]")
                 if Data.auxX != Data.targetX:
                     print(f"Proc[{Data.auxX}][{Data.targetY}] NAO e o destino")
         else:
@@ -143,8 +143,8 @@ for posAplic in dados['aplicacoes']:
         Data.sTarget = posGT['tarefa_destino']
         Data.qtdPacotes = posGT['quantidade_pacotes']
 
-        for i in range(iTam - 1, -1, -1):
-            for j in range(0, jTam, 1):
+        for i in range(iTam, -1, -1):
+            for j in range(0, jTam+1, 1):
                 if matrizMapeamento[j][i] == Data.sSource:
                     Data.sourceX = Data.auxX = j
                     Data.sourceY = Data.auxY = i
