@@ -28,9 +28,7 @@ matrizCalor = matrizMapeamento = list()
 
 
 def mapeamento():
-    print("Mapeamento:")
-    print("\nY\n^ ")
-    print("|\n|")
+    print("Mapeamento:\n\nY\n^\n|\n| ")
 
     for i in range(iTam - 1, -1, -1):
         print("|", end="")
@@ -53,7 +51,6 @@ def contadorDePacotes():
         print("|", end="")
         for j in range(0, jTam, 1):
             print(f"{matrizCalor[j][i]:>3}", end="")
-            matrizCalor[j][i] = 0
         print("")
     print(end="  ")
     for i in range(0, jTam * 2, 1):
@@ -75,23 +72,14 @@ def router(Data):
         if Data.auxY == jTam-1 and incremento == 1 or Data.auxY == 0 and incremento == -1:
             Data.auxY = 0 if Data.auxY == jTam-1 else jTam-1
             if rota:
-                print(
-                    f"Proc[{Data.sourceX}][{jTam-1-Data.auxY}] enviou a mensagem para o Proc[{Data.sourceX}][{Data.auxY}]")
-                print(
-                    f"Proc[{Data.sourceX}][{Data.auxY}] recebeu a mensagem do Proc[{Data.sourceX}][{jTam-1-Data.auxY}]")
-            if Data.sourceX != Data.targetX or Data.auxY != Data.targetY:
-                if rota:
-                    print(f"Proc[{Data.sourceX}][{Data.auxY}] NAO e o destino")
+                print(f"Proc[{Data.sourceX}][{jTam-1-Data.auxY}] enviou a mensagem para o Proc[{Data.sourceX}][{Data.auxY}]")
+                print(f"Proc[{Data.sourceX}][{Data.auxY}] recebeu a mensagem do Proc[{Data.sourceX}][{jTam-1-Data.auxY}]")
+                if Data.sourceX != Data.targetX or Data.auxY != Data.targetY: print(f"Proc[{Data.sourceX}][{Data.auxY}] NAO e o destino")
         else:
             if rota:
-                print(
-                    f"Proc[{Data.sourceX}][{Data.auxY}] enviou a mensagem do Proc[{Data.sourceX}][{Data.auxY+incremento}]")
-                print(
-                    f"Proc[{Data.sourceX}][{Data.auxY+incremento}] recebeu a mensagem do Proc[{Data.sourceX}][{Data.auxY}]")
-            if Data.sourceX != Data.targetX or Data.auxY + incremento != Data.targetY:
-                if rota:
-                    print(
-                        f"Proc[{Data.sourceX}][{Data.auxY+incremento}] NAO e o destino")
+                print(f"Proc[{Data.sourceX}][{Data.auxY}] enviou a mensagem do Proc[{Data.sourceX}][{Data.auxY+incremento}]")
+                print(f"Proc[{Data.sourceX}][{Data.auxY+incremento}] recebeu a mensagem do Proc[{Data.sourceX}][{Data.auxY}]")
+                if Data.sourceX != Data.targetX or Data.auxY + incremento != Data.targetY: print(f"Proc[{Data.sourceX}][{Data.auxY+incremento}] NAO e o destino")
             Data.auxY += incremento
         matrizCalor[Data.sourceX][Data.auxY] += Data.qtdPacotes
 
@@ -102,23 +90,14 @@ def router(Data):
         if Data.auxX == iTam - 1 and incremento == 1 or Data.auxX == 0 and incremento == -1:
             Data.auxX = 0 if Data.auxX == iTam-1 else iTam-1
             if rota:
-                print(
-                    f"Proc[{iTam-1-Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX}][{Data.targetY}]")
-                print(
-                    f"Proc[{Data.auxX}][{Data.targetY}] recebeu a mensagem do Proc[{iTam-1-Data.auxX}][{Data.targetY}]")
-            if Data.auxX != Data.targetX:
-                if rota:
-                    print(f"Proc[{Data.auxX}][{Data.targetY}] NAO e o destino")
+                print(f"Proc[{iTam-1-Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX}][{Data.targetY}]")
+                print(f"Proc[{Data.auxX}][{Data.targetY}] recebeu a mensagem do Proc[{iTam-1-Data.auxX}][{Data.targetY}]")
+                if Data.auxX != Data.targetX: print(f"Proc[{Data.auxX}][{Data.targetY}] NAO e o destino")
         else:
             if rota:
-                print(
-                    f"Proc[{Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX+incremento}][{Data.targetY}]")
-                print(
-                    f"Proc[{Data.auxX+incremento}][{Data.targetY}] recebeu a mensagem do Proc[{Data.auxX}][{Data.targetY}]")
-                if Data.auxX+incremento != Data.targetX:
-                    if rota:
-                        print(
-                            f"Proc[{Data.auxX+incremento}][{Data.targetY}] NAO e o destino")
+                print(f"Proc[{Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX+incremento}][{Data.targetY}]")
+                print(f"Proc[{Data.auxX+incremento}][{Data.targetY}] recebeu a mensagem do Proc[{Data.auxX}][{Data.targetY}]")
+                if Data.auxX+incremento != Data.targetX: print(f"Proc[{Data.auxX+incremento}][{Data.targetY}] NAO e o destino")
             Data.auxX += incremento
         matrizCalor[Data.auxX][Data.targetY] += Data.qtdPacotes
     if rota:
@@ -163,9 +142,9 @@ for posAplic in dados['aplicacoes']:
         for i in range(iTam - 1, -1, -1):
             for j in range(0, jTam, 1):
                 if matrizMapeamento[j][i] == Data.sSource:
-                    Data.sourceX = Data.auxX = j
-                    Data.sourceY = Data.auxY = i
-                if matrizMapeamento[j][i] == Data.sTarget:
+                    Data.targetX = Data.sourceX = Data.auxX = j
+                    Data.targetY = Data.sourceY = Data.auxY = i
+                elif matrizMapeamento[j][i] == Data.sTarget:
                     Data.targetX = j
                     Data.targetY = i
         router(Data)
