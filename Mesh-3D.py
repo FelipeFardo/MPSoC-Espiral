@@ -18,10 +18,10 @@ def router(Data):
         jTam-1)/2 or Data.targetY - Data.sourceY < 0 and abs(Data.targetY - Data.sourceY) <= (jTam-1)/2 else 1
     while Data.auxY != Data.targetY:
         # 3D
-        if Data.auxY == jTam-1 and incremento == 1 or Data.auxY == 0 and incremento == -1:
-            Data.auxY = 0 if Data.auxY == jTam-1 else jTam-1
-            print(f"Proc[{Data.sourceX}][{jTam-1-Data.auxY}] enviou a mensagem para o Proc[{Data.sourceX}][{Data.auxY}]")
-            print(f"Proc[{Data.sourceX}][{Data.auxY}] recebeu a mensagem do Proc[{Data.sourceX}][{jTam-1-Data.auxY}]")
+        if Data.auxY == iTam and incremento == 1 or Data.auxY == 0 and incremento == -1:
+            Data.auxY = 0 if Data.auxY == iTam else iTam
+            print(f"Proc[{Data.sourceX}][{iTam-Data.auxY}] enviou a mensagem para o Proc[{Data.sourceX}][{Data.auxY}]")
+            print(f"Proc[{Data.sourceX}][{Data.auxY}] recebeu a mensagem do Proc[{Data.sourceX}][{iTam-Data.auxY}]")
             if Data.sourceX != Data.targetX or Data.auxY != Data.targetY: print(f"Proc[{Data.sourceX}][{Data.auxY}] NAO e o destino")
         # 2D
         else:
@@ -35,10 +35,10 @@ def router(Data):
         iTam-1)/2 or Data.targetX - Data.sourceX < 0 and abs(Data.targetX - Data.sourceX) <= (iTam-1)/2 else 1
     while Data.auxX != Data.targetX:
         # 3D
-        if Data.auxX == iTam-1 and incremento == 1 or Data.auxX == 0 and incremento == -1:
-            Data.auxX = 0 if Data.auxX == iTam-1 else iTam-1
-            print(f"Proc[{iTam-1-Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX}][{Data.targetY}]")
-            print(f"Proc[{Data.auxX}][{Data.targetY}] recebeu a mensagem do Proc[{iTam-1-Data.auxX}][{Data.targetY}]")
+        if Data.auxX == jTam and incremento == 1 or Data.auxX == 0 and incremento == -1:
+            Data.auxX = 0 if Data.auxX == jTam else jTam
+            print(f"Proc[{jTam-Data.auxX}][{Data.targetY}] enviou a mensagem para o Proc[{Data.auxX}][{Data.targetY}]")
+            print(f"Proc[{Data.auxX}][{Data.targetY}] recebeu a mensagem do Proc[{jTam-Data.auxX}][{Data.targetY}]")
             if Data.auxX != Data.targetX: print(f"Proc[{Data.auxX}][{Data.targetY}] NAO e o destino")
         # 2D
         else:
@@ -50,8 +50,8 @@ def router(Data):
     print(f"Proc[{Data.targetX}][{Data.targetY}] consumiu a mensagem\n")
 
 
-iTam = dados['Size']['X']
-jTam = dados['Size']['Y']
+jTam = dados['Size']['X']
+iTam = dados['Size']['Y']
 k = 1
 
 print("\nMesh: ")
@@ -64,7 +64,7 @@ for i in range(iTam, -1, -1):
     print("")
 for i in range(0, jTam*2, 1):
     print("--", end="")
-print("------>  X")
+print("--------->  X")
 
 for i in dados['Packages']:
     print(f"Exemplo {k}: ")
