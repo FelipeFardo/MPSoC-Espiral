@@ -1,6 +1,6 @@
 import json
 
-with open("Test1.json", encoding='utf-8') as meu_json:
+with open("Test4.json", encoding='utf-8') as meu_json:
     teste1 = json.load(meu_json)
 
 rota=True
@@ -15,12 +15,13 @@ class Data(object):
     source = Header()
     target = Header()
     distancia = Header()
-    qtdPacotes = posPonto = limiteTasks = qtd = id= numId = ultimoId = int()
+    qtdPacotes = posPonto = limiteTasks = qtd = id= ultimoId = numId = int()
     sSource = sTarget = str()
     matrizEspiral = list()
     matrizCalor = list()
     grafoTarefas = list()
     tarefas = list()
+    ultimosId = list()
     posAplic = dict()
 
 # funcao para criar as matrizes
@@ -130,6 +131,7 @@ def distancia(data):
                 if (len(data.matrizEspiral[y][x])<data.limiteTasks):
                     MarcarPonto(data,raio)
         raio-=1
+    
 
 def router(data):
     if not rota:
@@ -221,7 +223,7 @@ for data.posAplic in teste1["TEST"]:
         aplic = json.load(meu_json)
     
     data.posPonto = data.ultimoId = data.id = 0
-    
+    data.tarefas=[]
     for data.grafoTarefas in aplic["grafo_tarefas"]:
         letra = data.grafoTarefas["tarefa_origem"]
         if (letra not in data.tarefas):
@@ -233,13 +235,14 @@ for data.posAplic in teste1["TEST"]:
     for l in range (0, data.qtd):
         for c in range(0, data.limiteTasks):
             distancia(data)
+    data.ultimosId.append(data.ultimoId)
 
 for data.posAplic in teste1["TEST"]:
 
     with open(f"Applications/{nomeAplic}.json", encoding='utf-8') as meu_json:
         aplic = json.load(meu_json)
 
-    mostraMatriz(data,2)
-
-    for data.numId in range(0, data.ultimoId):
-        router(data)
+    for q in (data.ultimosId):
+        for data.numId in range(0, q):
+            router(data)
+        
